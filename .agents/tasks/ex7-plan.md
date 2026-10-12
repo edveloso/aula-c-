@@ -1,0 +1,13 @@
+# Implementation Plan
+
+- [ ] 1. Criar o avaliador de notação polonesa reversa em `ex-7a.cpp`, declarando todos os símbolos no namespace `exercicio_7a` para que a inclusão direta no único `main.cpp` não colida com o conversor do exercício 7.b. Implementar `int avaliaPolonesa(const char expressao[], const int valores[], int N)` somente com `int pilha[7]` e um índice de topo: aceitar `N` de 1 a 7, associar `valores[0..N-1]` a `A..`, empilhar letras, aplicar `+`, `-`, `*`, `/` retirando primeiro o operando direito e depois o esquerdo, e retornar `0` para toda entrada inválida (incluindo divisão por zero ou resultado final diferente de um elemento). Manter comentários em português, sem STL, cabeçalhos, alocação dinâmica, recursão ou `main`; documentar no fonte que `AB+CED/-*` com `{3,3,2,1,1}` avalia corretamente para `6`, não `-4`.
+      Files: criar `/Users/veloso/workspace/algoritimo/prova01/ex-7a.cpp`
+      Verify: após a etapa 3, `make build` termina com código 0 e os dois casos de avaliação impressos pelo executável mostram os resultados esperados `6` e `-4`.
+
+- [ ] 2. Criar o conversor de expressão parentizada para RPN em `ex-7b.cpp`, isolando todos os seus símbolos no namespace `exercicio_7b`. Implementar exatamente `void polonesa(char expressao[], int N, char saida_polonesa[])` com um array nativo `char operadores[]` e índice de topo: ignorar espaços e `'('`, emitir letras maiúsculas e dígitos diretamente, empilhar os quatro operadores e, em cada `')'`, desempilhar um operador; sempre terminar a saída com `'\0'` e, quando possível, produzir saída vazia para ponteiros nulos ou `N <= 0`, sem STL, cabeçalhos, alocação dinâmica, recursão ou `main`.
+      Files: criar `/Users/veloso/workspace/algoritimo/prova01/ex-7b.cpp`
+      Verify: após a etapa 3, `make run` imprime para `((A+B)*(C-(F/D)))` a saída obtida `AB+CFD/-*`, igual à esperada.
+
+- [ ] 3. Substituir o conteúdo de teste atual de `main.cpp` por um único `main` que inclua somente `ex-7a.cpp` e `ex-7b.cpp`, preserve `<iostream>` para os relatórios e invoque as APIs qualificadas pelos namespaces. Executar e relatar claramente esperado versus obtido para: `{3,3,2,1,1}` com `AB+CED/-*` esperado `6`; `{3,3,2}` com `CAB+-` esperado `-4` (`C-(A+B)`); e conversão de `((A+B)*(C-(F/D)))` esperada `AB+CFD/-*`; acumular falhas e retornar valor diferente de zero se alguma comparação falhar, ou `0` se todas passarem. Não incluir os `.cpp` de exercícios anteriores, pois suas definições globais podem conflitar.
+      Files: modificar `/Users/veloso/workspace/algoritimo/prova01/main.cpp`
+      Verify: `make build` executa `clang++ -std=c++20 main.cpp -o main` com sucesso; depois `make run` executa `./main`, exibe os três pares esperado/obtido corretos e encerra com código `0`.
