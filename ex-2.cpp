@@ -1,4 +1,5 @@
 #include <queue>
+#include <string>
 
 template<typename Agregado, typename Tipo>
 concept PilhaTAD = requires(Agregado a, Tipo t) {
@@ -48,3 +49,21 @@ struct Pilha2F {
 };
 
 static_assert(PilhaTAD<Pilha2F, char>);
+
+
+
+
+#include <iostream>
+int main(){
+  Pilha2F d;
+  std::string s =  "skatenaveia";
+  for(char c : s){
+    d.empilha(c);
+  }
+  while(d.topo() != '\0'){
+    std::cout << d.desempilha();
+  }
+
+  return 0;
+
+}

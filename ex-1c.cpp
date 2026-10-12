@@ -25,3 +25,23 @@ struct FilaDeque {
 
 static_assert(DequeTAD<Deque, char>);
 static_assert(FilaTAD<FilaDeque, char>);
+
+
+
+#include <iostream>
+int main(){
+  FilaDeque d;
+  std::cout << d.frente();
+  d.enfileira('x');
+  d.enfileira('y');
+  d.enfileira('t');
+  d.enfileira('z');
+  std::cout << d.desenfileira() ;
+  std::cout << d.desenfileira() ;
+  std::cout << d.desenfileira() ;
+  std::cout << d.desenfileira() ;
+  
+
+  return 0;
+
+}

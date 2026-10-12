@@ -25,3 +25,18 @@ struct PilhaDeque {
 
 static_assert(PilhaTAD<PilhaDeque, char>); // testa se Pilha está correta
 
+
+#include <iostream>
+int main(){
+  PilhaDeque d;
+  d.empilha('a');
+  d.empilha('b');
+  d.empilha('c');
+  std::cout << d.desempilha();
+  std::cout << d.desempilha();
+  std::cout << d.desempilha();
+  std::cout << d.topo();
+
+  return 0;
+
+}
